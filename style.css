@@ -1,0 +1,1217 @@
+/* ==========================================================================
+   DESIGN TOKENS (:root) - GLASSMORPHISM PURPLE-PINK-GOLD THEME
+   ========================================================================== */
+:root {
+    --primary: #9333ea;
+    --primary-light: #c084fc;
+    --primary-dark: #6b21a8;
+    --secondary: #ec4899;
+    --accent: #fbbf24;
+    --success: #10b981;
+    --info: #38bdf8;
+    --danger: #f43f5e;
+
+    --text-light: #f8fafc;
+    --text-muted: #cbd5e1;
+
+    --bg-glass: rgba(20, 14, 36, 0.58);
+    --bg-glass-hover: rgba(32, 22, 56, 0.72);
+    --border-glass: rgba(192, 132, 252, 0.35);
+    --border-glass-strong: rgba(192, 132, 252, 0.65);
+    --shadow-glass: 0 16px 40px rgba(0, 0, 0, 0.55), 0 0 25px rgba(147, 51, 234, 0.18);
+
+    --radius: 1.25rem;
+    --radius-sm: 0.85rem;
+    --radius-pill: 9999px;
+    --transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ==========================================================================
+   RESET & NỀN TỔNG THỂ (TỐI ƯU CHO IPHONE / IOS SAFARI)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    height: -webkit-fill-available;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #0f071e;
+    color: var(--text-light);
+    min-height: 100vh;
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
+    position: relative;
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Lớp phủ tối chuyển sắc sang trọng (GPU-accelerated cho iOS Safari) */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
+    background:
+        radial-gradient(circle at 50% 10%, rgba(147, 51, 234, 0.22), transparent 60%),
+        linear-gradient(180deg, rgba(15, 7, 30, 0.52) 0%, rgba(8, 4, 18, 0.76) 100%);
+    z-index: -1;
+    pointer-events: none;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Ảnh nền cố định chống giật/trắng nền khi cuộn thanh địa chỉ Safari */
+.fixed-background {
+    position: fixed;
+    inset: 0;
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
+    background: url("img/background.gif") no-repeat center center / cover;
+    z-index: -2;
+    pointer-events: none;
+    -webkit-transform: translateZ(0) scale(1.02);
+    transform: translateZ(0) scale(1.02);
+    will-change: transform;
+}
+
+/* ==========================================================================
+   CONTAINER & GLASS CARD
+   ========================================================================== */
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding:
+        calc(2.25rem + env(safe-area-inset-top, 0px))
+        calc(1.5rem + env(safe-area-inset-right, 0px))
+        calc(2.25rem + env(safe-area-inset-bottom, 0px))
+        calc(1.5rem + env(safe-area-inset-left, 0px));
+}
+
+.glass-card {
+    background: var(--bg-glass);
+    border-radius: var(--radius);
+    padding: 2.5rem 2rem;
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    backdrop-filter: blur(18px) saturate(180%);
+    border: 1px solid var(--border-glass);
+    box-shadow: var(--shadow-glass);
+    margin-bottom: 2rem;
+    position: relative;
+    transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.glass-card:hover {
+    border-color: rgba(192, 132, 252, 0.5);
+}
+
+.glass-card h2 {
+    margin-top: 0;
+    margin-bottom: 1.6rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    text-align: center;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.glass-card h2 i {
+    color: var(--primary-light);
+    filter: drop-shadow(0 0 8px rgba(192, 132, 252, 0.45));
+}
+
+/* ==========================================================================
+   PHẦN HỒ SƠ (PROFILE SECTION)
+   ========================================================================== */
+.profile-section {
+    text-align: center;
+}
+
+.avatar-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-top: 0.25rem;
+}
+
+.avatar {
+    width: 132px;
+    height: 132px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-light);
+    box-shadow:
+        0 0 22px rgba(147, 51, 234, 0.65),
+        0 0 40px rgba(236, 72, 153, 0.25);
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.avatar-wrapper:hover .avatar {
+    transform: scale(1.04);
+    border-color: var(--secondary);
+    box-shadow:
+        0 0 28px rgba(236, 72, 153, 0.75),
+        0 0 45px rgba(147, 51, 234, 0.45);
+}
+
+.online-indicator {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: var(--success);
+    border: 2.5px solid #140e24;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.85);
+}
+
+.profile-name {
+    margin-top: 1.15rem;
+    margin-bottom: 0.35rem;
+    min-height: 2.6rem;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-light);
+    letter-spacing: 0.3px;
+    text-shadow: 0 2px 14px rgba(147, 51, 234, 0.55);
+}
+
+.profile-bio {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin-bottom: 0.45rem;
+}
+
+.profile-bio.live-info {
+    display: inline-block;
+    margin-top: 0.4rem;
+    margin-bottom: 1.85rem;
+    padding: 0.35rem 1.1rem;
+    border-radius: var(--radius-pill);
+    background: rgba(147, 51, 234, 0.18);
+    border: 1px solid var(--border-glass);
+    color: #f3e8ff;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   NÚT TRÒN TRÊN GÓC CARD & ICON MẠNG XÃ HỘI
+   ========================================================================== */
+.card-top-left-share-button,
+.music-button {
+    position: absolute;
+    top: 1.25rem;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1.5px solid var(--border-glass-strong);
+    color: var(--text-light);
+    font-size: 1.25rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.38);
+    transition: all var(--transition);
+    z-index: 2;
+    outline: none;
+    touch-action: manipulation;
+}
+
+.card-top-left-share-button {
+    left: 1.25rem;
+}
+
+.card-top-right-music-button {
+    right: 1.25rem;
+}
+
+.card-top-left-share-button:hover,
+.card-top-left-share-button:focus-visible,
+.music-button:hover,
+.music-button:focus-visible {
+    background: rgba(147, 51, 234, 0.28);
+    border-color: var(--primary-light);
+    color: #ffffff;
+    transform: translateY(-2px) scale(1.08);
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.45),
+        0 0 18px rgba(192, 132, 252, 0.7);
+}
+
+@keyframes music-pulse-glow {
+    0%, 100% {
+        box-shadow:
+            0 0 14px rgba(147, 51, 234, 0.75),
+            0 0 26px rgba(236, 72, 153, 0.45);
+    }
+    50% {
+        box-shadow:
+            0 0 22px rgba(236, 72, 153, 0.9),
+            0 0 36px rgba(192, 132, 252, 0.75);
+    }
+}
+
+.music-button.playing {
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.55) 0%, rgba(236, 72, 153, 0.55) 100%);
+    border-color: #f472b6;
+    color: #ffffff;
+    animation: music-pulse-glow 2.2s infinite ease-in-out;
+}
+
+/* Social Icons */
+.social-icons {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.social-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1.5px solid var(--border-glass-strong);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+    color: var(--text-light);
+    font-size: 1.35rem;
+    text-decoration: none;
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    touch-action: manipulation;
+}
+
+.social-icon:hover,
+.social-icon:focus-visible {
+    transform: translateY(-4px) scale(1.1);
+    background: rgba(147, 51, 234, 0.28);
+    border-color: var(--primary-light);
+    box-shadow:
+        0 10px 22px rgba(0, 0, 0, 0.48),
+        0 0 18px rgba(192, 132, 252, 0.75);
+}
+
+/* Màu riêng cho từng nền tảng */
+.social-icon .fa-facebook-f,
+.social-icon .fa-facebook {
+    color: #1877f2;
+}
+
+.social-icon .fa-instagram {
+    color: #e1306c;
+}
+
+.social-icon .fa-youtube {
+    color: #ff0000;
+}
+
+.social-icon .fa-envelope {
+    color: #fbbf24;
+}
+
+.social-icon .fa-discord {
+    color: #5865f2;
+}
+
+.social-icon .fa-tiktok {
+    color: #00f2fe;
+    filter: drop-shadow(1.5px 1.5px 0px #fe0979);
+}
+
+.social-icon .fa-gamepad {
+    color: var(--primary-light);
+}
+
+.social-icon img,
+.social-icon-img {
+    width: 26px !important;
+    height: 26px !important;
+    object-fit: contain;
+    border-radius: 50%;
+    display: block;
+    transition: transform var(--transition);
+}
+
+.social-icon:hover img,
+.social-icon:hover .social-icon-img {
+    transform: scale(1.08);
+}
+
+/* ==========================================================================
+   PHẦN ỦNG HỘ (SUPPORT SECTION, QR, BANK INFO & DONATE BUTTONS)
+   ========================================================================== */
+.support-section {
+    text-align: center;
+}
+
+.support-section h2 i {
+    color: var(--primary-light);
+}
+
+/* Khung QR Ủng hộ */
+.support-qr-wrapper {
+    position: relative;
+    width: 80%;
+    max-width: 240px;
+    margin: 0 auto 1.35rem auto;
+    background: #ffffff;
+    padding: 12px;
+    border-radius: 1.1rem;
+    border: 2.5px solid var(--border-glass-strong);
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(147, 51, 234, 0.3);
+    overflow: hidden;
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.support-qr-wrapper:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-light);
+    box-shadow:
+        0 14px 30px rgba(0, 0, 0, 0.5),
+        0 0 26px rgba(192, 132, 252, 0.55);
+}
+
+.support-qr-code {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0.65rem;
+    transition: opacity var(--transition), filter var(--transition);
+}
+
+/* Nút tải xuống QR (dùng chung cho Donate QR & Share QR) */
+.download-qr-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: linear-gradient(135deg, #9333ea 0%, #db2777 100%);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: var(--radius-pill);
+    padding: 0.75rem 1.35rem;
+    font-size: 0.98rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0 8px 22px rgba(219, 39, 119, 0.5);
+    touch-action: manipulation;
+}
+
+.download-qr-overlay:hover {
+    background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+    box-shadow: 0 10px 26px rgba(236, 72, 153, 0.7);
+}
+
+@media (hover: hover) {
+    .support-qr-wrapper:hover .support-qr-code,
+    .share-qr-wrapper:hover .share-qr-image {
+        opacity: 0.25;
+        filter: blur(2px);
+    }
+
+    .support-qr-wrapper:hover .download-qr-overlay,
+    .share-qr-wrapper:hover .download-qr-overlay {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Box kính thông tin ngân hàng */
+.support-bank-info {
+    background: rgba(15, 9, 28, 0.55);
+    border: 1px solid var(--border-glass);
+    border-radius: 1rem;
+    padding: 1rem 1.35rem;
+    margin: 0 auto 1.6rem auto;
+    max-width: 450px;
+    text-align: left;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.support-bank-info p {
+    margin: 0;
+    padding: 0.55rem 0;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    border-bottom: 1px dashed rgba(192, 132, 252, 0.18);
+}
+
+.support-bank-info p:last-child {
+    border-bottom: none;
+    padding-bottom: 0.15rem;
+}
+
+.support-bank-info p:first-child {
+    padding-top: 0.15rem;
+}
+
+.support-bank-info strong {
+    color: var(--accent);
+    font-weight: 600;
+    min-width: 122px;
+}
+
+.bank-account-number {
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    font-family: 'Inter', monospace;
+}
+
+/* Nút Copy nhỏ cạnh Số tài khoản */
+.copy-inline-btn,
+.copy-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    margin-left: auto;
+    padding: 0.32rem 0.75rem;
+    border-radius: var(--radius-pill);
+    background: rgba(147, 51, 234, 0.22);
+    border: 1px solid var(--border-glass-strong);
+    color: #ffffff;
+    font-size: 0.84rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all var(--transition);
+    touch-action: manipulation;
+}
+
+.copy-inline-btn:hover,
+.copy-inline-btn:focus-visible,
+.copy-btn:hover,
+.copy-btn:focus-visible {
+    background: linear-gradient(135deg, #9333ea 0%, #db2777 100%);
+    border-color: rgba(255, 255, 255, 0.45);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(219, 39, 119, 0.4);
+}
+
+.copy-inline-btn.copied,
+.copy-btn.copied,
+.share-link-box button.copied {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    border-color: rgba(167, 243, 208, 0.7) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.45) !important;
+}
+
+/* ==========================================================================
+   3 NÚT ỦNG HỘ ĐỒNG BỘ (ZYPAGE, WESCAN, PAYPAL)
+   ========================================================================== */
+.support-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    margin-top: 1.5rem;
+}
+
+.btn,
+.support-buttons a {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    width: 100%;
+    text-decoration: none;
+    padding: 0.95rem 1.75rem;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    font-size: 1.08rem;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    transition: all var(--transition);
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+/* Hiệu ứng ánh sáng lướt (shimmer) khi hover trên nút donate */
+.support-buttons a::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.24),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: left 0.55s ease;
+    pointer-events: none;
+}
+
+.support-buttons a:hover::after {
+    left: 140%;
+}
+
+/* 1. ZyPage Button: Màu Xanh Tím Periwinkle / Indigo-Blue đặc trưng thương hiệu ZyPage */
+.zypage-button {
+    background: linear-gradient(135deg, #7C83FD 0%, #5865F2 50%, #4F46E5 100%);
+    border-color: rgba(165, 180, 252, 0.45);
+    color: #ffffff !important;
+    box-shadow: 0 6px 18px rgba(99, 102, 241, 0.38);
+}
+
+.zypage-button:hover,
+.zypage-button:focus-visible {
+    background: linear-gradient(135deg, #818CF8 0%, #6366F1 50%, #4338CA 100%);
+    color: #ffffff !important;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(99, 102, 241, 0.55);
+    border-color: rgba(199, 210, 254, 0.65);
+}
+
+/* 2. WeScan Button: Gradient Vàng Gold - Hổ phách sang trọng, chữ trắng đồng nhất */
+.wescan-button {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+}
+
+.wescan-button:hover,
+.wescan-button:focus-visible {
+    background: linear-gradient(135deg, #fbbf24 0%, #ea580c 100%);
+    color: #ffffff !important;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 26px rgba(245, 158, 11, 0.55);
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+/* 3. PayPal Button: Gradient Xanh Sapphire - Indigo hiện đại */
+.paypal-button {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: #ffffff !important;
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+}
+
+.paypal-button:hover,
+.paypal-button:focus-visible {
+    background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+    color: #ffffff !important;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 26px rgba(37, 99, 235, 0.55);
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+.support-footer-text {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 1.4rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid rgba(192, 132, 252, 0.2);
+}
+
+/* ==========================================================================
+   ALBUM ẢNH TRANG CHỦ (.showcase-section, .showcase-grid, .showcase-image)
+   ========================================================================== */
+.showcase-section {
+    text-align: center;
+}
+
+.showcase-section h2 i {
+    color: var(--accent);
+    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.4));
+}
+
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1.15rem;
+}
+
+.showcase-image {
+    width: 100%;
+    border-radius: 0.9rem;
+    border: 1.5px solid var(--border-glass);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    display: block;
+}
+
+.showcase-image:hover,
+.showcase-image:focus-visible {
+    transform: translateY(-5px) scale(1.03);
+    border-color: var(--primary-light);
+    box-shadow:
+        0 12px 26px rgba(0, 0, 0, 0.55),
+        0 0 18px rgba(192, 132, 252, 0.45);
+    outline: none;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer {
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    padding: 1.35rem 1.5rem;
+}
+
+.footer-main {
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+}
+
+.footer-main i {
+    color: var(--secondary);
+    margin-right: 0.3rem;
+}
+
+.footer a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+.footer a:hover {
+    color: var(--primary-light);
+}
+
+/* ==========================================================================
+   POPUP CHIA SẺ (#sharePopup)
+   ========================================================================== */
+.popup-overlay {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(8, 4, 18, 0.78);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--transition), visibility var(--transition);
+    padding: 1rem;
+}
+
+.popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.popup-content {
+    background: rgba(24, 16, 44, 0.88);
+    margin: auto;
+    padding: 2rem 1.75rem;
+    border-radius: var(--radius);
+    width: 100%;
+    max-width: 410px;
+    box-shadow: var(--shadow-glass);
+    position: relative;
+    color: var(--text-light);
+    transform: translateY(12px) scale(0.95);
+    transition: transform var(--transition), opacity var(--transition);
+    opacity: 0;
+}
+
+.popup-overlay.active .popup-content {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+.share-popup-content {
+    border: 1.5px solid var(--border-glass-strong);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    backdrop-filter: blur(22px) saturate(180%);
+}
+
+.close-button {
+    position: absolute;
+    top: 0.9rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    line-height: 1;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-glass);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition);
+    touch-action: manipulation;
+}
+
+.close-button:hover,
+.close-button:focus-visible {
+    color: #ffffff;
+    background: rgba(236, 72, 153, 0.35);
+    border-color: var(--secondary);
+    transform: rotate(90deg);
+}
+
+.popup-header {
+    text-align: center;
+    margin-bottom: 1.4rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-glass);
+}
+
+.popup-header h3 {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--primary-light);
+}
+
+.share-qr-wrapper {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 1.5rem auto;
+    background: #ffffff;
+    padding: 12px;
+    border-radius: 1rem;
+    border: 2px solid var(--border-glass-strong);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.share-qr-wrapper:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 26px rgba(147, 51, 234, 0.4);
+}
+
+.share-qr-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 0.5rem;
+    transition: opacity var(--transition), filter var(--transition);
+}
+
+.share-link-box {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: rgba(10, 6, 20, 0.65);
+    border-radius: var(--radius-pill);
+    padding: 0.4rem 0.45rem 0.4rem 1rem;
+    margin-top: 1.25rem;
+    border: 1.5px solid var(--border-glass-strong);
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.share-link-box input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    background: transparent;
+    outline: none;
+    /* Giữ tối thiểu 16px để tránh iOS Safari tự động phóng to viewport khi focus */
+    font-size: 16px;
+    font-family: inherit;
+    color: var(--text-light);
+    padding: 0.4rem 0.25rem;
+}
+
+.share-link-box button {
+    background: linear-gradient(135deg, #9333ea 0%, #db2777 100%);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: var(--radius-pill);
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    font-size: 0.92rem;
+    font-weight: 600;
+    font-family: inherit;
+    white-space: nowrap;
+    transition: all var(--transition);
+    box-shadow: 0 4px 12px rgba(219, 39, 119, 0.35);
+    touch-action: manipulation;
+}
+
+.share-link-box button:hover,
+.share-link-box button:focus-visible {
+    background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(219, 39, 119, 0.55);
+}
+
+/* ==========================================================================
+   LIGHTBOX XEM ẢNH PHÓNG TO (.lightbox-overlay, .lightbox-img, .lightbox-close)
+   ========================================================================== */
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(8, 4, 18, 0.88);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--transition), visibility var(--transition);
+}
+
+.lightbox-overlay.active,
+.lightbox-overlay.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.lightbox-img {
+    max-width: min(92vw, 960px);
+    max-height: 84dvh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 1rem;
+    border: 2px solid var(--border-glass-strong);
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.75),
+        0 0 30px rgba(147, 51, 234, 0.35);
+    transform: scale(0.92);
+    transition: transform var(--transition);
+}
+
+.lightbox-overlay.active .lightbox-img,
+.lightbox-overlay.show .lightbox-img {
+    transform: scale(1);
+}
+
+.lightbox-close {
+    position: fixed;
+    top: calc(1.25rem + env(safe-area-inset-top, 0px));
+    right: calc(1.25rem + env(safe-area-inset-right, 0px));
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1.5px solid var(--border-glass-strong);
+    color: #ffffff;
+    font-size: 1.3rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    transition: all var(--transition);
+    z-index: 2001;
+    touch-action: manipulation;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus-visible {
+    background: linear-gradient(135deg, #9333ea 0%, #db2777 100%);
+    border-color: #ffffff;
+    transform: rotate(90deg) scale(1.08);
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.7);
+}
+
+/* ==========================================================================
+   TOAST THÔNG BÁO NỔI (.toast-notification)
+   ========================================================================== */
+.toast-notification {
+    position: fixed;
+    bottom: calc(1.75rem + env(safe-area-inset-bottom, 0px));
+    left: 50%;
+    transform: translate(-50%, 24px) scale(0.95);
+    z-index: 3000;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.4rem;
+    border-radius: var(--radius-pill);
+    background: rgba(24, 15, 44, 0.92);
+    border: 1.5px solid var(--border-glass-strong);
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.55),
+        0 0 22px rgba(147, 51, 234, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    max-width: 92vw;
+    text-align: center;
+}
+
+.toast-notification.active,
+.toast-notification.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0) scale(1);
+}
+
+.toast-notification i {
+    font-size: 1.15rem;
+    color: var(--success);
+}
+
+.toast-notification.toast-error {
+    border-color: rgba(244, 63, 94, 0.7);
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.55),
+        0 0 22px rgba(244, 63, 94, 0.35);
+}
+
+.toast-notification.toast-error i {
+    color: var(--danger);
+}
+
+/* ==========================================================================
+   BẢN QUYỀN ẨN (F12)
+   ========================================================================== */
+#copyright-hidden-text {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   THIẾT BỊ CẢM ỨNG & IPHONE (HIỂN THỊ NÚT TẢI QR GỌN GÀNG, KHÔNG CHE QR)
+   ========================================================================== */
+@media (hover: none), (pointer: coarse) {
+    .support-qr-wrapper,
+    .share-qr-wrapper {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .support-qr-wrapper .support-qr-code,
+    .share-qr-wrapper .share-qr-image {
+        opacity: 1 !important;
+        filter: none !important;
+    }
+
+    .support-qr-wrapper .download-qr-overlay,
+    .share-qr-wrapper .download-qr-overlay {
+        position: static;
+        transform: none !important;
+        opacity: 1;
+        visibility: visible;
+        width: 100%;
+        margin-top: 0.65rem;
+        padding: 0.55rem 0.9rem;
+        font-size: 0.88rem;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE (TỐI ƯU CHO IPHONE & MOBILE)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .container {
+        padding:
+            calc(1.35rem + env(safe-area-inset-top, 0px))
+            calc(1rem + env(safe-area-inset-right, 0px))
+            calc(1.75rem + env(safe-area-inset-bottom, 0px))
+            calc(1rem + env(safe-area-inset-left, 0px));
+    }
+
+    .glass-card {
+        padding: 1.65rem 1.15rem;
+        margin-bottom: 1.35rem;
+    }
+
+    .glass-card h2 {
+        font-size: 1.45rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .card-top-left-share-button,
+    .music-button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+        top: 1rem;
+    }
+
+    .card-top-left-share-button {
+        left: 1rem;
+    }
+
+    .card-top-right-music-button {
+        right: 1rem;
+    }
+
+    .avatar {
+        width: 98px;
+        height: 98px;
+    }
+
+    .online-indicator {
+        width: 15px;
+        height: 15px;
+        bottom: 6px;
+        right: 6px;
+    }
+
+    .profile-name {
+        font-size: 1.55rem;
+        min-height: 2.2rem;
+    }
+
+    .profile-bio {
+        font-size: 0.94rem;
+    }
+
+    .social-icons {
+        gap: 0.75rem;
+    }
+
+    .social-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 1.2rem;
+    }
+
+    .social-icon img,
+    .social-icon-img {
+        width: 22px !important;
+        height: 22px !important;
+    }
+
+    .support-qr-wrapper {
+        width: 72%;
+        max-width: 195px;
+    }
+
+    .support-bank-info {
+        padding: 0.85rem 1rem;
+    }
+
+    .support-bank-info p {
+        font-size: 0.9rem;
+    }
+
+    .support-bank-info strong {
+        min-width: 105px;
+    }
+
+    .support-buttons a {
+        padding: 0.85rem 1.25rem;
+        font-size: 0.98rem;
+    }
+
+    .support-footer-text {
+        font-size: 0.95rem;
+    }
+
+    .showcase-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+
+    .popup-content {
+        padding: 1.5rem 1.15rem;
+    }
+
+    .popup-header h3 {
+        font-size: 1.2rem;
+    }
+
+    .share-qr-wrapper {
+        width: 170px;
+        height: auto;
+        padding: 10px;
+    }
+
+    .share-link-box {
+        padding: 0.35rem 0.35rem 0.35rem 0.85rem;
+    }
+
+    .share-link-box input {
+        font-size: 16px;
+    }
+
+    .share-link-box button {
+        padding: 0.55rem 0.95rem;
+        font-size: 0.86rem;
+    }
+}
